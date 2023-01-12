@@ -1,8 +1,11 @@
 import 'dart:ffi';
 
+import 'package:doktorum/pages/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
+import 'dr_card_2.dart';
 
 class HomePage2 extends StatefulWidget {
   const HomePage2({super.key});
@@ -65,9 +68,15 @@ class _HomePage2State extends State<HomePage2> {
             child: Row(
               children: [
                 Container(
-                  height: 100,
-                  width: 100,
-                  color: Color.fromARGB(255, 190, 238, 191),
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 52, 103, 54),
+                      borderRadius: BorderRadius.circular(60)),
+                  height: 120,
+                  width: 140,
+                  child: Image.asset(
+                    'assets/icons/dr_patient.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(
                   width: 20,
@@ -105,66 +114,74 @@ class _HomePage2State extends State<HomePage2> {
         Container(
           margin: EdgeInsets.only(left: 20, right: 20),
           height: 80,
-          child: ListView(scrollDirection: Axis.horizontal, children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 221, 167, 147),
-                  borderRadius: BorderRadius.circular(20)),
-              margin: EdgeInsets.only(right: 10),
-              padding: EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/icons/teeth.png',
-                    height: 50,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text('Diş hekimi'),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 221, 167, 147),
-                  borderRadius: BorderRadius.circular(20)),
-              margin: EdgeInsets.only(right: 10),
-              padding: EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/icons/teeth.png',
-                    height: 50,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text('Diş hekimi'),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 221, 167, 147),
-                  borderRadius: BorderRadius.circular(20)),
-              margin: EdgeInsets.only(right: 10),
-              padding: EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/icons/teeth.png',
-                    height: 50,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text('Diş hekimi'),
-                ],
-              ),
-            )
-          ]),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Category(
+                  categoryName: 'Diş Hekimi',
+                  iconImagePath: 'assets/icons/teeth.png'),
+              Category(
+                  categoryName: 'Kardiyolog',
+                  iconImagePath: 'assets/icons/heart.png'),
+              Category(
+                  categoryName: 'Ortopedi',
+                  iconImagePath: 'assets/icons/ortopedi.png'),
+              Category(
+                  categoryName: 'Nöroloji',
+                  iconImagePath: 'assets/icons/nöroloji.png'),
+              Category(
+                  categoryName: 'KBB', iconImagePath: 'assets/icons/kbb.png'),
+            ],
+          ),
         ),
+        SizedBox(
+          height: 25,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Doktor Listesi',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Text(
+                'Hepsini Gör',
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 25,
+        ),
+        Expanded(
+            child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            DrCard2(
+                doctorImagePath: 'assets/icons/man_pp.png',
+                doctorName: 'Fırat Alkaya',
+                doctorProfession: 'Kardiyolog',
+                raiting: '4.9'),
+            DrCard2(
+                doctorImagePath: 'assets/icons/man_pp.png',
+                doctorName: 'Mehmet Demir',
+                doctorProfession: 'Nörolog',
+                raiting: '4.6'),
+            DrCard2(
+                doctorImagePath: 'assets/icons/man_pp.png',
+                doctorName: 'Yunus Taş',
+                doctorProfession: 'Genel Cerrah',
+                raiting: '4.0'),
+            DrCard2(
+                doctorImagePath: 'assets/icons/man_pp.png',
+                doctorName: 'Semih ALKAYA',
+                doctorProfession: 'KBB',
+                raiting: '4.8'),
+          ],
+        ))
       ],
     );
   }
