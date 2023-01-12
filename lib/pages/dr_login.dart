@@ -1,5 +1,6 @@
 import 'package:doktorum/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'dr_register.dart';
 
 class DRlogin extends StatefulWidget {
   const DRlogin({Key? key}) : super(key: key);

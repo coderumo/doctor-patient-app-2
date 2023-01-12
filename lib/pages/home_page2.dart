@@ -23,7 +23,6 @@ class _HomePage2State extends State<HomePage2> {
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,17 +40,15 @@ class _HomePage2State extends State<HomePage2> {
                   ),
                 ],
               ),
-              Container(
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 76, 73, 84),
-                    borderRadius: BorderRadius.circular(30)),
-                child: Icon(
-                  Icons.person,
-                  size: 30,
-                  color: Colors.white,
-                ),
+              SizedBox(
+                width: 80,
               ),
+              IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.exit_to_app)),
             ],
           ),
         ),
