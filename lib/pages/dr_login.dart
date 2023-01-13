@@ -17,15 +17,8 @@ class _DRloginState extends State<DRlogin> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Doktor girş ekranına hoş geldiniz',
-            style: TextStyle(
-              fontSize: 20,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
           Padding(
-            padding: const EdgeInsets.only(top: 70, left: 50, right: 50),
+            padding: const EdgeInsets.only(left: 50, right: 50),
             child: TextFormField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(
@@ -72,7 +65,7 @@ class _DRloginState extends State<DRlogin> {
                 }),
           ),
           Row(
-            children: const [
+            children: [
               Padding(
                 padding: EdgeInsets.only(
                   top: 10,
@@ -84,15 +77,16 @@ class _DRloginState extends State<DRlogin> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10, left: 6),
-                child: TextButton(
-                  onPressed: null,
-                  child: Text(
-                    "Kaydol",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              ),
+                  padding: EdgeInsets.only(top: 10, left: 6),
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DrRegister()),
+                        );
+                      },
+                      child: Text('kaydol'))),
             ],
           ),
         ],

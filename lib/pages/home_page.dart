@@ -1,7 +1,8 @@
 import 'package:doktorum/model/dr_model.dart';
+import 'package:doktorum/pages/first_page.dart';
 import 'package:doktorum/pages/pt_login.dart';
 import 'package:doktorum/services/api.dart';
-import 'package:doktorum/services/dr_card.dart';
+import 'package:doktorum/pages/dr_card.dart';
 import 'package:flutter/material.dart';
 
 import '../messages/message.dart';
@@ -32,23 +33,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Color.fromARGB(255, 52, 103, 54),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => FirstPage())));
+              },
+              icon: Icon(Icons.exit_to_app)),
+        ],
+      ),
       backgroundColor: Colors.grey[300],
-      // appBar: AppBar(
-      //   title: const Text('DOKTORUM'),
-      //   centerTitle: true,
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {},
-      //       icon: const Icon(Icons.notifications),
-      //     )
-      //   ],
-      //   backgroundColor: Color.fromARGB(255, 52, 103, 54),
-      //   shape: const RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.only(
-      //     bottomLeft: Radius.circular(25),
-      //     bottomRight: Radius.circular(25),
-      //   )),
-      // ),
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

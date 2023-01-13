@@ -1,17 +1,18 @@
 import 'package:dio/dio.dart';
+import 'package:doktorum/pages/dr_card_3.dart';
 import 'package:flutter/material.dart';
 
 import '../model/dr_model.dart';
 import '../pages/dr_card.dart';
 
-class DRapi extends StatefulWidget {
-  const DRapi({super.key});
+class DRapi2 extends StatefulWidget {
+  const DRapi2({super.key});
 
   @override
-  State<DRapi> createState() => _DRapiState();
+  State<DRapi2> createState() => _DRapi2State();
 }
 
-class _DRapiState extends State<DRapi> {
+class _DRapi2State extends State<DRapi2> {
   Future<List<DRModel>> _getDrList() async {
     try {
       var response =
@@ -39,11 +40,11 @@ class _DRapiState extends State<DRapi> {
             return Expanded(
               child: Scrollbar(
                 child: ListView.builder(
-                  scrollDirection: Axis.vertical,
+                  scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     var user = userList[index];
-                    return DRCard(user: user);
+                    return DRCard3(user: user);
                   },
                   itemCount: userList.length,
                 ),

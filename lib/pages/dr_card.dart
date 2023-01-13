@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../model/dr_model.dart';
 
-class DRCard extends StatelessWidget {
+class DRCard extends StatefulWidget {
   const DRCard({
     Key? key,
     required this.user,
@@ -10,6 +10,11 @@ class DRCard extends StatelessWidget {
 
   final DRModel user;
 
+  @override
+  State<DRCard> createState() => _DRCardState();
+}
+
+class _DRCardState extends State<DRCard> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -25,9 +30,9 @@ class DRCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildText("name: ", user.name.toString()),
-              buildText("name: ", user.username.toString()),
-              buildText("e-mail: ", user.email.toString()),
+              buildText("name: ", widget.user.name.toString()),
+              buildText("name: ", widget.user.username.toString()),
+              buildText("e-mail: ", widget.user.email.toString()),
               const SizedBox(
                 height: 20,
               ),
