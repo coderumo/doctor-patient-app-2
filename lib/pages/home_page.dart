@@ -1,4 +1,5 @@
 import 'package:doktorum/model/dr_model.dart';
+import 'package:doktorum/pages/drawer_page.dart';
 import 'package:doktorum/pages/first_page.dart';
 import 'package:doktorum/pages/pt_login.dart';
 import 'package:doktorum/services/api.dart';
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.exit_to_app)),
         ],
       ),
+      drawer: MyDrawerPage(),
       backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
