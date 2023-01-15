@@ -15,34 +15,21 @@ class DrRegister extends StatefulWidget {
 class _DrRegisterState extends State<DrRegister> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 200,
-          title: const Text(''),
-          centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 52, 103, 54),
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(25),
-            bottomRight: Radius.circular(25),
-          )),
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                text: 'DOKTOR ',
-              ),
-              Tab(
-                text: 'HASTA',
-              ),
-            ],
+    return Stack(
+      children: [
+        Opacity(
+          opacity: 0.09,
+          child: Image.asset(
+            'assets/images/steteskop.png',
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
           ),
         ),
-        body: TabBarView(
-          children: [
-            Container(
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SingleChildScrollView(
+            child: Container(
               margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
               child: Column(
                 children: [
@@ -110,9 +97,9 @@ class _DrRegisterState extends State<DrRegister> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0),
                       ),
-                      color: Colors.green,
+                      color: Color.fromARGB(255, 16, 89, 111),
                       child: const Text(
-                        "Giriş Yap",
+                        "Kayıt Ol",
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
@@ -135,9 +122,9 @@ class _DrRegisterState extends State<DrRegister> {
                 ],
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

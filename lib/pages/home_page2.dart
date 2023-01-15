@@ -25,14 +25,28 @@ class _HomePage2State extends State<HomePage2> {
           child: Container(
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 221, 167, 147),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 127, 125, 125).withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 16, 89, 111),
+                    Color.fromARGB(255, 46, 187, 209)
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(30)),
             child: Row(
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 52, 103, 54),
-                      borderRadius: BorderRadius.circular(60)),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(60)),
                   height: 120,
                   width: 140,
                   child: Image.asset(
@@ -67,6 +81,16 @@ class _HomePage2State extends State<HomePage2> {
           height: 25,
         ),
         Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.6),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
           margin: EdgeInsets.only(left: 20, right: 20),
           height: 80,
           child: ListView(
@@ -99,7 +123,10 @@ class _HomePage2State extends State<HomePage2> {
             children: [
               Text(
                 'Doktor Listesi',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.black),
               ),
               Text(
                 'Hepsini Gör',
@@ -110,7 +137,7 @@ class _HomePage2State extends State<HomePage2> {
           ),
         ),
         SizedBox(
-          height: 25,
+          height: 20,
         ),
         Expanded(
             child: ListView(

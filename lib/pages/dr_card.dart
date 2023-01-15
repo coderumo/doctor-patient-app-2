@@ -21,8 +21,15 @@ class _DRCardState extends State<DRCard> {
     return Container(
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 16, 89, 111),
+            Color.fromARGB(255, 46, 187, 209)
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(10),
-        color: Color.fromARGB(255, 221, 167, 147),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
