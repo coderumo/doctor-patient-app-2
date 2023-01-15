@@ -12,7 +12,14 @@ class Category extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 221, 167, 147),
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 16, 89, 111),
+              Color.fromARGB(255, 46, 187, 209)
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           borderRadius: BorderRadius.circular(20)),
       margin: EdgeInsets.only(right: 10),
       padding: EdgeInsets.all(20),
