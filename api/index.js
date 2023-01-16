@@ -36,7 +36,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-// This responds with "Hello World" on the homepage
+
 app.get('/listelehasta', function (req, res) {
   console.log("Hastalar listelendi:");
   con.query("SELECT * FROM mydb.hasta", function (err, result, fields) {
@@ -56,23 +56,6 @@ app.get('/listeledoktor', function (req, res) {
     res.end();
   });
 })
-
-/*
-app.get('/hastagiris', function (req, res) {
-  console.log("Hasta Giris:");
-  var ad = req.query.ad
-  var soyad = req.query.soyad
-  var mail = req.query.mail
-  var sifre = req.query.sifre
-
-  con.query("SELECT * FROM mydb.hasta WHERE hasta_mail = ? AND hasta_sifre = ?",[mail, sifre], function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    res.json(result);
-    res.end();
-  });
-})
-*/
 
 app.post('/hastagiris', urlencodedParser, function (req, res) {
   console.log("Hasta giris bilgileri kontrol ediliyor.");
@@ -103,39 +86,6 @@ app.post('/hastaekleme', urlencodedParser, function (req, res) {
   var sifre = req.body.hasta_sifre;
 
 
-  
-  var sql = "INSERT INTO hasta (hasta_ad, hasta_soyad, hasta_mail, hasta_sifre) VALUES ?";
-  var values = [
-    [ad, soyad, mail, sifre]
-  ]
-
-  con.query(sql,[values], function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    res.json(result);
-  });
-  
-})
-
-app.get('/kisi', function (req, res) {
-  console.log("Kisi Sayfasi");
-  var ad = req.query.ad
-  var soyad = req.query.soyad
-  con.query("SELECT * FROM mydb.hasta WHERE hasta_ad = ?",[ad], function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    res.json(result);
-  });
-})
-
-/*
-app.get('/hastaekle', function (req, res) {
-  console.log("Hasta ekleniyor.");
-
-  var ad = req.query.ad
-  var soyad = req.query.soyad
-  var mail = req.query.mail
-  var sifre = req.query.sifre
 
   var sql = "INSERT INTO hasta (hasta_ad, hasta_soyad, hasta_mail, hasta_sifre) VALUES ?";
   var values = [
@@ -147,34 +97,8 @@ app.get('/hastaekle', function (req, res) {
     console.log(result);
     res.json(result);
   });
+  
 })
-*/
-
-/*
-app.get('/doktorekle', function (req, res) {
-  console.log("Doktor ekleniyor.");
-
-  var id = req.query.id;
-  var ad = req.query.ad;
-  var soyad = req.query.soyad;
-  var fak = req.query.fak;
-  var uzman = req.query.uzman;
-  var hane = req.query.hane;
-  var klinik = req.query.klinik;
-  //var resim = req.query.resim;
-
-  var sql = "INSERT INTO doktor (iddoktor, doktor_ad, doktor_soyad, doktor_fak, doktor_uzm, doktor_hane, doktor_klinik) VALUES ?";
-  var values = [
-    [id, ad, soyad, fak, uzman, hane, klinik]
-  ]
-
-  con.query(sql,[values], function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    res.json(result);
-  });
-})
-*/
 
 app.post('/doktorekleme', urlencodedParser, function (req, res) {
   console.log("Doktor ekleniyor.");
@@ -192,7 +116,6 @@ app.post('/doktorekleme', urlencodedParser, function (req, res) {
   
   //var resim = req.body.resim;
 
-  
   var sql = "INSERT INTO doktor (doktor_ad, doktor_soyad, doktor_mail, doktor_sifre, doktor_uzm, doktor_fak, doktor_hane, doktor_klinik) VALUES ?";
   var values = [
     [ad, soyad, mail, sifre, uzman, fak, hane, klinik]
@@ -217,6 +140,7 @@ app.post('/doktorgiris', urlencodedParser, function (req, res) {
   var sql = "SELECT * FROM mydb.doktor WHERE doktor_mail = ? AND doktor_sifre = ?";
 
   con.query(sql,[mail, sifre], function (err, result, fields) {
+    console.log(result);
     if (err) throw err;
     if (result[0] == null){
       res.status(299);
@@ -248,22 +172,3 @@ app.get('/hastaara', function (req, res) {
     res.json(result);
   });
 })
-
-/*
-app.get('/hastasil', function (req, res) {
-  console.log("Arama Sayfasi");
-
-  var ad = req.query.ad;
-
-  var sql = "DELETE FROM hasta WHERE hasta_ad = ?";
-  var values = [
-    [ad]
-  ]
-
-  con.query(sql,[values], function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    res.json(result);
-  });
-})
-*/
