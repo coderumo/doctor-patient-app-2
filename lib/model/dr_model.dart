@@ -6,136 +6,48 @@ import 'dart:convert';
 
 class DRModel {
   DRModel({
-    required this.id,
-    required this.name,
-    required this.username,
+    required this.ad,
+    required this.soyad,
     required this.email,
-    required this.address,
-    required this.phone,
-    required this.website,
-    required this.company,
+    required this.sifre,
+    required this.fak,
+    required this.uzman,
+    required this.hastane,
+    required this.klinik,
   });
 
-  final int? id;
-  final String? name;
-  final String? username;
+  final String? ad;
+  final String? soyad;
   final String? email;
-  final Address? address;
-  final String? phone;
-  final String? website;
-  final Company? company;
+  final String? sifre;
+  final String? fak;
+  final String? uzman;
+  final String? hastane;
+  final String? klinik;
 
   factory DRModel.fromJson(String str) => DRModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory DRModel.fromMap(Map<String, dynamic> json) => DRModel(
-        id: json["id"],
-        name: json["name"],
-        username: json["username"],
-        email: json["email"],
-        address: Address.fromMap(json["address"]),
-        phone: json["phone"],
-        website: json["website"],
-        company: Company.fromMap(json["company"]),
-      );
+    ad: json["doktor_ad"],
+    soyad: json["doktor_soyad"],
+    email: json["doktor_mail"],
+    sifre: json["doktor_sifre"],
+    fak: json["doktor_fak"],
+    uzman: json["doktor_uzm"],
+    hastane: json["doktor_hane"],
+    klinik: json["doktor_klinik"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "username": username,
-        "email": email,
-        "address": address!.toMap(),
-        "phone": phone,
-        "website": website,
-        "company": company!.toMap(),
-      };
-}
-
-class Address {
-  Address({
-    required this.street,
-    required this.suite,
-    required this.city,
-    required this.zipcode,
-    required this.geo,
-  });
-
-  final String? street;
-  final String? suite;
-  final String? city;
-  final String? zipcode;
-  final Geo? geo;
-
-  factory Address.fromJson(String str) => Address.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Address.fromMap(Map<String, dynamic> json) => Address(
-        street: json["street"],
-        suite: json["suite"],
-        city: json["city"],
-        zipcode: json["zipcode"],
-        geo: Geo.fromMap(json["geo"]),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "street": street,
-        "suite": suite,
-        "city": city,
-        "zipcode": zipcode,
-        "geo": geo!.toMap(),
-      };
-}
-
-class Geo {
-  Geo({
-    required this.lat,
-    required this.lng,
-  });
-
-  final String? lat;
-  final String? lng;
-
-  factory Geo.fromJson(String str) => Geo.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Geo.fromMap(Map<String, dynamic> json) => Geo(
-        lat: json["lat"],
-        lng: json["lng"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "lat": lat,
-        "lng": lng,
-      };
-}
-
-class Company {
-  Company({
-    required this.name,
-    required this.catchPhrase,
-    required this.bs,
-  });
-
-  final String? name;
-  final String? catchPhrase;
-  final String? bs;
-
-  factory Company.fromJson(String str) => Company.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Company.fromMap(Map<String, dynamic> json) => Company(
-        name: json["name"],
-        catchPhrase: json["catchPhrase"],
-        bs: json["bs"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "name": name,
-        "catchPhrase": catchPhrase,
-        "bs": bs,
-      };
+    "id": ad,
+    "name": soyad,
+    "username": email,
+    "email": sifre,
+    "address": fak,
+    "phone": uzman,
+    "website": hastane,
+    "company": klinik,
+  };
 }

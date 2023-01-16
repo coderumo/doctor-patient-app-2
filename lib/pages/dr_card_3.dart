@@ -85,9 +85,9 @@ class _DRCard3State extends State<DRCard3> {
                         ),
                       ],
                     )),
-                buildText("name: ", widget.user.name.toString()),
-                buildText("user name: ", widget.user.username.toString()),
-                buildText("e-mail: ", widget.user.email.toString()),
+                buildText("Ad: ", widget.user.ad.toString()),
+                buildText("Soyad: ", widget.user.soyad.toString()),
+                buildText("Uzmanlık : ", widget.user.uzman.toString()),
                 const SizedBox(
                   height: 10,
                 ),

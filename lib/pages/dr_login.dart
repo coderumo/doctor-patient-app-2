@@ -21,7 +21,7 @@ class _DRloginState extends State<DRlogin> {
 
   Future signIn(String email, String pass) async {
     try {
-      String url = 'https://jsonplaceholder.typicode.com/users';
+      String url = 'http://10.0.2.2:8081/doktorgiris';
       // SharedPreferences sharedPreferences =
       //     await SharedPreferences.getInstance();
       Map body = {"email": email, "username": pass};
@@ -30,7 +30,7 @@ class _DRloginState extends State<DRlogin> {
       var res = await http.post(Uri.parse(url), body: body);
       debugPrint(res.statusCode.toString());
 
-      if (res.statusCode == 300) {
+      if (res.statusCode != 299) {
         jsonResponse = json.decode(res.body);
 
         if (jsonResponse != null) {
@@ -41,7 +41,7 @@ class _DRloginState extends State<DRlogin> {
           //sharedPreferences.setString("token", jsonResponse["token"]);
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) => HomePage()),
-              (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
         }
         print("response status: ${res.body}");
       } else {
@@ -57,106 +57,125 @@ class _DRloginState extends State<DRlogin> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Opacity(
-          opacity: 0.09,
-          child: Image.asset(
-            'assets/images/steteskop.png',
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          resizeToAvoidBottomInset: false,
-          body: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
+                // child: TextFormField(
+                //   controller: _emailController,
+                //   decoration: const InputDecoration(
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                //       borderSide: BorderSide(color: Colors.white),
+                //     ),
+                //     filled: true,
+                //     labelText: "E-mail",
+                //     labelStyle: TextStyle(color: Colors.black),
+                //   ),
+                // ),
+                child: TextField(
+                  controller: _emailController,
+                  obscureText: false,
+                  decoration: InputDecoration(hintText: 'email'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, left: 50, right: 50),
+                // child: TextFormField(
+                //   controller: _passController,
+                //   obscureText: true,
+                //   autovalidateMode: AutovalidateMode.always,
+                //   decoration: const InputDecoration(
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                //       borderSide: BorderSide(color: Colors.white),
+                //     ),
+                //     filled: true,
+                //     labelText: "Şifre",
+                //     labelStyle: TextStyle(color: Colors.black),
+                //   ),
+                // ),
+                child: TextField(
+                  controller: _passController,
+                  obscureText: true,
+                  decoration: InputDecoration(hintText: 'password'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, left: 50, right: 50),
+                // child: MaterialButton(
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(50.0),
+                //     ),
+                //     color: Colors.green,
+                //     child: Text(
+                //       "Giriş Yap",
+                //       style: TextStyle(color: Colors.white),
+                //     ),
+                //     onPressed: _emailController.text == "" ||
+                //             _passController.text == ""
+                /*         ? null*/
+                //         : () {
+                //             setState(() {
+                //               _isLoading = true;
+                //             });
+                //             signIn(_emailController.text, _passController.text);
+                //           }),
+
+                child: ElevatedButton(
+                  onPressed: (_emailController.value == "" ||
+                      _passController.value == "")
+                      ? () {
+                    debugPrint('ohfuhşwfhwhfş');
+                  }
+                      : (() {
+                    setState(() {
+                      _isLoading = false;
+                    });
+                    signIn(_emailController.text, _passController.text);
+                  }),
+                  child: const Text('Giriş yap'),
+                ),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: Text('Şifremi unuttum'),
+              ),
+              Row(
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 50, right: 50),
-                    child: TextField(
-                      controller: _emailController,
-                      obscureText: false,
-                      decoration: InputDecoration(hintText: 'email'),
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      top: 10,
+                      left: 100,
+                    ),
+                    child: Text(
+                      "Hesabın yok mu?",
+                      style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 50, right: 50),
-                    child: TextField(
-                      controller: _passController,
-                      obscureText: true,
-                      decoration: InputDecoration(hintText: 'password'),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 50, right: 50),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 16, 89, 111),
-                      ),
-                      onPressed: (_emailController.text == "" ||
-                              _passController.text == "")
-                          ? () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => HomePage())));
-                              debugPrint('ohfuhşwfhwhfş');
-                            }
-                          : (() {
-                              setState(() {
-                                _isLoading = false;
-                              });
-                              signIn(
-                                  _emailController.text, _passController.text);
-                            }),
-                      child: const Text('Giriş yap'),
-                    ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {},
-                    child: Text('Şifremi unuttum'),
-                  ),
-                  Row(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(
-                          top: 10,
-                          left: 100,
-                        ),
-                        child: Text(
-                          "Hesabın yok mu?",
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10, left: 6),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Register()),
-                              );
-                            },
-                            child: Text('kaydol')),
-                      ),
-                    ],
-                  ),
+                      padding: EdgeInsets.only(top: 10, left: 6),
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Register()),
+                            );
+                          },
+                          child: Text('kaydol'))),
                 ],
               ),
-            ),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 }

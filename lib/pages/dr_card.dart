@@ -37,9 +37,9 @@ class _DRCardState extends State<DRCard> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildText("name: ", widget.user.name.toString()),
-              buildText("name: ", widget.user.username.toString()),
-              buildText("e-mail: ", widget.user.email.toString()),
+              buildText("Ad: ", widget.user.ad.toString()),
+              buildText("Soyad: ", widget.user.soyad.toString()),
+              buildText("Uzmanlık: ", widget.user.uzman.toString()),
               const SizedBox(
                 height: 20,
               ),

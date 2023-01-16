@@ -16,7 +16,7 @@ class _DRapi2State extends State<DRapi2> {
   Future<List<DRModel>> _getDrList() async {
     try {
       var response =
-          await Dio().get('https://jsonplaceholder.typicode.com/users');
+          await Dio().get('http://10.0.2.2:8081/listeledoktor');
       debugPrint(response.toString());
       List<DRModel>? _drList = [];
       if (response.statusCode == 200) {
