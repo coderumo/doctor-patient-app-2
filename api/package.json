@@ -1,0 +1,30 @@
+{
+  "name": "proje",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql",
+    "restapi"
+  ],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BilginOmer/mobil_proje.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BilginOmer/mobil_proje/issues"
+  },
+  "homepage": "https://github.com/BilginOmer/mobil_proje#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}
